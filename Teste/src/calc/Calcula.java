@@ -7,7 +7,8 @@ public class Calcula {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+
+		GerenciaArquivo gArquivo = new GerenciaArquivo();
 		int result = 0;
 		String conteudo = "";
 		
@@ -16,37 +17,14 @@ public class Calcula {
 		 * */
 		while(true){
 			
-			conteudo = leituraSentenca();
-			calculo(conteudo);
+			conteudo = gArquivo.leituraSentenca();
+			gArquivo.limpaArquivo("entrada.txt");
+			calculo(conteudo, gArquivo);
 	
 		}
 	}
 	
-	public static String leituraSentenca (){
-		
-		String conteudo = "";
-		
-		do{
-			try {
-				
-				FileReader arquivo = new FileReader("C:\\Users\\Lorrany\\git\\teste\\Teste\\src\\calc\\entrada.txt");
-				BufferedReader leitor = new BufferedReader (arquivo);			
-				while (leitor.ready()) {
-					conteudo += leitor.readLine();
-				}
-				leitor.close();
-				arquivo.close();	
-				
-			} catch (IOException ioe){
-				System.out.println("Erro :" + ioe.getMessage());
-			}
-		}while(conteudo == "");
-		
-		limpaArquivo();
-		return conteudo;
-	}
-	
-	public static void calculo(String conteudo){
+	public static void calculo(String conteudo, GerenciaArquivo gArquivo){
 
 		try{		
 			
@@ -74,7 +52,7 @@ public class Calcula {
 					break;
 			}
 			
-			escreve(result);
+			gArquivo.escreveResultado(result);
 			
 		} catch(Exception e){
 			System.out.println("Erro Calculo:" + e.getMessage());
@@ -83,21 +61,7 @@ public class Calcula {
 		
 	}
 	
-	public static void escreve(int result) {
-		
-		try{			
-			FileWriter arquivo = new FileWriter("C:\\Users\\Lorrany\\git\\teste\\Teste\\src\\calc\\saida.txt");
-			PrintWriter escritor = new PrintWriter (arquivo);
-			escritor.printf("%d",result);
-			escritor.close();
-			arquivo.close();	
-			
-		}catch(IOException ioe){
-			System.out.println("Erro Escreve:" + ioe.getMessage());
-		}
-	}
-	
-	public static void limpaArquivo(){
+	/*public static void limpaArquivo(){
 		try{			
 			FileWriter arquivo = new FileWriter("C:\\Users\\Lorrany\\git\\teste\\Teste\\src\\calc\\entrada.txt");
 			PrintWriter escritor = new PrintWriter (arquivo);
@@ -108,6 +72,6 @@ public class Calcula {
 		}catch(IOException ioe){
 			System.out.println("Erro Limpa:" + ioe.getMessage());
 		}
-	}
+	}*/
 
 }
