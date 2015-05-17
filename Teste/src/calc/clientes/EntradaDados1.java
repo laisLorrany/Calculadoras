@@ -1,10 +1,10 @@
-package calc;
+package calc.clientes;
 
 import java.util.Scanner;
-import java.io.*;
+import calc.*;
 
-public class EntradaDados {
-
+public class EntradaDados1 {
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
@@ -28,11 +28,12 @@ public class EntradaDados {
 				System.out.println(ex.getMessage());
 			}
 			 
-			gArquivo.escreveOperacao(a, b, op);
-			gArquivo.leituraResultado();
-			gArquivo.limpaArquivo("saida.txt");
+			gArquivo.escreveOperacao(a, b, op, "");
+			gArquivo.leituraResultado("");
+			gArquivo.limpaArquivo("resultados\\saida.txt");
 			
 		}
 	}
 	
 }
+

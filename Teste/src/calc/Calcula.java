@@ -10,6 +10,7 @@ public class Calcula {
 
 		GerenciaArquivo gArquivo = new GerenciaArquivo();
 		int result = 0;
+		String[] ar = new String[2];
 		String conteudo = "";
 		
 		/*
@@ -17,17 +18,17 @@ public class Calcula {
 		 * */
 		while(true){
 			
-			conteudo = gArquivo.leituraSentenca();
-			gArquivo.limpaArquivo("entrada.txt");
-			calculo(conteudo, gArquivo);
+			ar = gArquivo.consultaSentenca();
+			gArquivo.limpaArquivo("clientes\\entrada"+ ar[1] +".txt");
+			calculo(ar, gArquivo);
 	
 		}
 	}
 	
-	public static void calculo(String conteudo, GerenciaArquivo gArquivo){
+	public static void calculo(String[] ar, GerenciaArquivo gArquivo){
 
 		try{		
-			
+			String conteudo = ar[0];
 			int a = 0, b = 0;
 			Operacao operacao = new Operacao();
 			char op = ' ';
@@ -52,7 +53,7 @@ public class Calcula {
 					break;
 			}
 			
-			gArquivo.escreveResultado(result);
+			gArquivo.escreveResultado(result, ar[1]);
 			
 		} catch(Exception e){
 			System.out.println("Erro Calculo:" + e.getMessage());
