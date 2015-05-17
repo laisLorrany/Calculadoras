@@ -30,22 +30,9 @@ public class EntradaDados {
 			 
 			gArquivo.escreveOperacao(a, b, op);
 			gArquivo.leituraResultado();
-			limpaArquivo();
+			gArquivo.limpaArquivo("saida.txt");
 			
 		}
 	}
-		
-	public static void limpaArquivo(){
-		try{			
-			FileWriter arquivo = new FileWriter("C:\\Users\\Lorrany\\git\\teste\\Teste\\src\\calc\\saida.txt");
-			PrintWriter escritor = new PrintWriter (arquivo, false);
-			escritor.printf("");
-			escritor.close();
-			arquivo.close();	
-			
-		}catch(IOException ioe){
-			System.out.println("Erro Limpa:" + ioe.getMessage());
-		}
-	}
-
+	
 }

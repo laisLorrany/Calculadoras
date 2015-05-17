@@ -56,22 +56,8 @@ public class Calcula {
 			
 		} catch(Exception e){
 			System.out.println("Erro Calculo:" + e.getMessage());
-		}
-		
+		}		
 		
 	}
-	
-	/*public static void limpaArquivo(){
-		try{			
-			FileWriter arquivo = new FileWriter("C:\\Users\\Lorrany\\git\\teste\\Teste\\src\\calc\\entrada.txt");
-			PrintWriter escritor = new PrintWriter (arquivo);
-			escritor.printf("");
-			escritor.close();
-			arquivo.close();	
-			
-		}catch(IOException ioe){
-			System.out.println("Erro Limpa:" + ioe.getMessage());
-		}
-	}*/
 
 }
