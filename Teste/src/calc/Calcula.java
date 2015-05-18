@@ -3,11 +3,27 @@ package calc;
 import java.util.Scanner;
 import java.io.*;
 
-public class Calcula {
+public class Calcula implements Runnable{
 
-	public static void main(String[] args) {
+	private Operacao op;
+	private int id;
+	
+	public Calcula(Operacao sentenca, int id){
+		this.op = sentenca;
+		this.id = id;
+	}
+	
+	public void run(){
 		// TODO Auto-generated method stub
-
+		
+		while (true){
+			op.consomeSentenca();
+			System.out.println("calc");
+			//System.out.printf("Resultado: %d", res);
+		}
+		
+		
+/*
 		GerenciaArquivo gArquivo = new GerenciaArquivo();
 		int result = 0;
 		String[] ar = new String[2];
@@ -15,7 +31,7 @@ public class Calcula {
 		
 		/*
 		 * Leitura do arquivo entrada.txt para identificar qual a sentença a ser realizada.
-		 * */
+		 * 
 		while(true){
 			
 			ar = gArquivo.consultaSentenca();
@@ -59,6 +75,7 @@ public class Calcula {
 			System.out.println("Erro Calculo:" + e.getMessage());
 		}		
 		
+	}*/
 	}
 
 }
