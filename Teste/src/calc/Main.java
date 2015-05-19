@@ -6,15 +6,13 @@ public class Main {
 		// TODO Auto-generated method stub
 		
 		Operacao op = new Operacao();
-		Entrada ent = new Entrada(op, 1);
-		Calcula calc = new Calcula(op, 1);
+		Entrada ent = new Entrada(op);
+		Calcula calc = new Calcula(op);
 		
 		Thread t1 = new Thread(ent);
 	    Thread t2 = new Thread(calc);
 
-		System.out.println("t1");
 		t1.start();
-		System.out.println("t2");
 		t2.start();
 	
 	}

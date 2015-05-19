@@ -4,36 +4,32 @@ import java.util.Scanner;
 
 public class Entrada implements Runnable{
 	
-	private Operacao op;
-	private int id;
+	/*
+	 * Essa Thread é responsável por fazer a leitura dos operandos e operadores e chamar o método para calcular.
+	 * */
 	
-	public Entrada(Operacao sentenca, int id){
+	private Operacao op;
+	
+	public Entrada(Operacao sentenca){
 		this.op = sentenca;
-		this.id = id;
 	}
 	
 	public void run(){
 		Scanner in = new Scanner(System.in);
+		int a = 0, b = 0;
+		char c = ' ';
 				
 		while (true){
-			/*
-			 * Entrada de Dados para Calculadora
-			 * */
-			System.out.println("here");
+			
 			try{
-				System.out.println("\n	Calculadora:");
-				System.out.println("Digite o primeiro algarismo:");
-				op.setA(in.nextInt());
-				System.out.println("Digite a operação desejada:");
-				op.setOp(in.next().charAt(0));
-				System.out.println("Digite o segundo algarismo:");
-				op.setB(in.nextInt());
-				op.setCondicao(true);
+				a = (in.nextInt());
+				c = (in.next().charAt(0));
+				b = (in.nextInt());
 			}catch (Exception ex){
 				System.out.println(ex.getMessage());
 			}
 
-			op.produzSentenca();
+			op.setSentenca(a, b, c);
 		}
 	}
 

@@ -2,21 +2,17 @@ package calc;
 
 public class Operacao {
 	
+	/*
+	 * Classe que compõe a operação e seus métodos.
+	 * */
+	
 	private int a, b;
 	private char op;	
-	private boolean condicao = false;
+	private boolean disponivel = false;
 	
 	
 	public Operacao() {
-		this.a = 0;
-		this.b = 0;
-		this.op = ' ';
-	}
-
-	public Operacao(int num1, int num2, char op) {
-		this.a = num1;
-		this.b = num2;
-		this.op = op;
+		disponivel = true;
 	}
 
 	public int getA() {
@@ -43,39 +39,23 @@ public class Operacao {
 		this.op = op;
 	}
 	
-	public boolean isCondicao() {
-		return condicao;
-	}
-
-	public void setCondicao(boolean condicao) {
-		this.condicao = condicao;
-	}
-	
-	public void verificaCondicao(){
-		if ((this.getA() == 0) && (this.getA() == 0) && (this.getOp() == ' ')){
-			setCondicao(false);
-		} else {
-			setCondicao(true);
-		}
+	public boolean isDisponivel() {
+		return disponivel;
 	}
 
 	public int somar (){
-		System.out.println("+");
 		return this.a + this.b;
 	}
 	
 	public int subtrair (){
-		System.out.println("-");
 		return this.a - this.b;
 	}
 	
 	public int multiplicar (){
-		System.out.println("*");
 		return this.a * this.b;
 	}
 	
 	public int dividir (){
-		System.out.println("/");
 		return this.a / this.b;
 	}
 	
@@ -95,45 +75,37 @@ public class Operacao {
 		return res;
 	}	
 	
-	public synchronized void consomeSentenca() {
-		System.out.println("consome1");
-	    while (this.condicao == false) {
-    		System.out.println("consome2");
+	public synchronized void setSentenca(int a, int b, char op) {
+
+	    while (disponivel == false) {
+
 	        try {
-	            //wait for Producer to put value
-	    		System.out.println("consome3");
 	            wait();
-	    		System.out.println("consome4");
 	        } catch (InterruptedException e) { 
 	        	System.out.println(e.getMessage());
 	        }
 	    }
-	    System.out.println("Resultado: " + calculo());
-	    this.condicao = false;
-	    //notify Producer that value has been retrieved
+	    setA(a);
+	    setB(b);
+	    setOp(op);
+	    disponivel = false;
 	    notifyAll();
 	}
 	
-	public synchronized void produzSentenca() {
-		System.out.println("produz1");
-	    while (this.condicao == true) {
+	public synchronized Operacao getSentenca() {
+	    
+		while (this.disponivel == true) {
 	        try {
-	            //wait for Consumer to get value
-	    		System.out.println("produz2");
-	    		notifyAll();
-	    		System.out.println("produz3");
 	            wait();
 	        } catch (InterruptedException e) {
 	        	System.out.println(e.getMessage());
 	        }
 	    }
 
-		System.out.println("produz4");
-	    this.condicao = true;
-	    //notify Consumer that value has been set
+	    disponivel = true;
 	    notifyAll();
-		System.out.println("produz5");
 	    
+	    return this;
 	}
 
 	
