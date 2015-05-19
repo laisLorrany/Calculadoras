@@ -17,7 +17,9 @@ public class Calcula {
 		 * */
 		while(true){
 			
-			conteudo = gArquivo.leituraSentenca();
+			do{
+				conteudo = gArquivo.leituraSentenca();
+			}while(conteudo == "");
 			gArquivo.limpaArquivo("entrada.txt");
 			calculo(conteudo, gArquivo);
 	

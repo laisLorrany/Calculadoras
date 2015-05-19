@@ -1,5 +1,8 @@
 package calc;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.io.*;
 
@@ -27,9 +30,13 @@ public class EntradaDados {
 			}catch (Exception ex){
 				System.out.println(ex.getMessage());
 			}
-			 
+			
+			String date = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date());
+			
 			gArquivo.escreveOperacao(a, b, op);
-			gArquivo.leituraResultado();
+			int res = gArquivo.leituraResultado();
+			System.out.printf("Resultado: %d", res);
+			gArquivo.escreveLog(a, b, op, res, date);
 			gArquivo.limpaArquivo("saida.txt");
 			
 		}
